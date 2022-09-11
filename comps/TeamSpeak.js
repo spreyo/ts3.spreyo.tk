@@ -44,7 +44,7 @@ const TeamSpeak = ({ clients, channels }) => {
 
             <div className="flex w-full h-screen ">
                 <div className="m-auto mt-40">
-                    <div className="bg-cgray p-20 rounded-3xl shadow-lg shadow-black">{clients["body"].map(client => {
+                    <div className="bg-cgray p-20 rounded-3xl ">{clients["body"].map(client => {
                         let channel = getChannelByID(channels["body"], client["cid"]);
                         let channel_name = channel["channel_name"];
                         if (!client["client_nickname"].includes("serveradmin")) {
