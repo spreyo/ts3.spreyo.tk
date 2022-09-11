@@ -4,7 +4,7 @@ import NavBar from '../comps/NavBar'
 import TeamSpeak from '../comps/TeamSpeak'
 import styles from '../styles/Home.module.css'
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const res = await fetch("http://ts3.spreyo.tk:10080/1/clientlist", {
     method: "GET", headers: {
       "x-api-key": "BABLcrHE7oI0qnrOFH_s66Kzlp41ubCsbpnFp0q"
