@@ -3,6 +3,10 @@ import Image from 'next/image'
 import NavBar from '../comps/NavBar'
 import TeamSpeak from '../comps/TeamSpeak'
 import styles from '../styles/Home.module.css'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { Login } from '../comps/Login'
+import { Closed } from '../comps/Closed'
 
 export const getServerSideProps = async () => {
   const res = await fetch("http://ts3.spreyo.tk:10080/1/clientlist", {
@@ -29,6 +33,9 @@ export const getServerSideProps = async () => {
 }
 
 export default function Home({ clients, channels }) {
+  const [key, setKey] = useState("override");
+  const [param, setParam] = useState((useRouter().query.key || 1).toString());
+
   return (
     <>
       <Head>
@@ -36,17 +43,29 @@ export default function Home({ clients, channels }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet" />
       </Head>
-      <div className='bg-cblack'>
-        <div className=''>
+      <>{param == key ?
+        <>
+          <div className='bg-cblack'>
+            <div className=''>
 
-          {/* <NavBar /> */}
-          <div className='flex justify-center'>
-            <img src="/ts3blue.png" className='w-2/12 text-cblue text-center mt-10'></img>
+              {/* <NavBar /> */}
+              <div className='flex justify-center'>
+                <img src="/ts3blue.png" className='w-2/12 text-cblue text-center mt-10'></img>
 
+              </div>
+              <TeamSpeak clients={clients} channels={channels} />
+            </div>
           </div>
-          <TeamSpeak clients={clients} channels={channels} />
+          <h1>
+            {param}
+          </h1>
+        </>
+        :
+        <div className='flex justify-center'>
+          <Closed />
         </div>
-      </div>
+      }</>
+
     </>
   )
 }
