@@ -51,6 +51,7 @@ export default function Home({ clients, channels }) {
                 {/* <img src="/ts3blue.png" className='w-2/12 text-cblue text-center mt-10'></img> */}
                 <h1 className="text-7xl text-cyan-500 font-extrabold font-sans  ">ts3.spreyo.xyz</h1>
 
+
               </div>
               <TeamSpeak clients={clients} channels={channels} />
             </div>
