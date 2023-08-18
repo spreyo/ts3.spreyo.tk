@@ -77,9 +77,6 @@ export default function Home({ clients, channels, logs }) {
     setConnections(cons);
   }, [])
 
-  useEffect(() => {
-    console.log(connections)
-  }, [connections])
 
   return (
     <>
