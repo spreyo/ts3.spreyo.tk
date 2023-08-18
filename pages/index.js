@@ -48,7 +48,8 @@ export default function Home({ clients, channels, logs }) {
     console.log(logs);
     logs.forEach(log => {
       if (log["l"].includes("client") && !log["l"].includes("query") && !log["l"].includes("disconnected")) {
-        const username = log["l"].match(/(?<=connected ')[^']+(?=')/g)[0];
+        // (?<=connected ')[^']+(?=')
+        const username = log["l"].match(/([^']+)/g)[1];
         const dateTimeString = log["l"].match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/g)[0];
         const year = dateTimeString.match(/\d{4}/g)[0];
         const month = dateTimeString.match(/\d{2}/g)[2];
@@ -76,6 +77,7 @@ export default function Home({ clients, channels, logs }) {
     cons = cons.slice(0, 5);
     setConnections(cons);
   }, [])
+
 
 
   return (
