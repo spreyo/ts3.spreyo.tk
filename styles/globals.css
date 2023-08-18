@@ -27,3 +27,9 @@ body {
     border-radius: 7px;
     border: 0px none #ffffff;
 }
+
+.mobile {
+    transform: scale(0.6);
+    transform-origin: 50% 0;
+
+}

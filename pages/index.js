@@ -44,6 +44,11 @@ export const getServerSideProps = async () => {
 export default function Home({ clients, channels, logs }) {
   const [connections, setConnections] = useState([]);
   useEffect(() => {
+    var isMobile = ('ontouchstart' in document.documentElement);
+    if (isMobile) {
+      document.querySelector("html").classList.add("mobile")
+    }
+
     var cons = [];
     console.log(logs);
     logs.forEach(log => {
