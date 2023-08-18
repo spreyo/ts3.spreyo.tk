@@ -1,6 +1,6 @@
 const NavBar = () => {
     return (
-        <header className="header sticky top-0 bg-cpurple shadow-md flex items-center justify-between px-8 py-02">
+        <header className="header sticky top-0 bg-cblue shadow-md flex items-center justify-between px-8 py-02">
             {/* logo */}
             <h1 className="w-3/12">
                 <a href="">

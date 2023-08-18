@@ -42,7 +42,7 @@ const TeamSpeak = ({ clients, channels }) => {
     return (
         <>
 
-            <div className="flex w-full h-screen ">
+            <div className="flex">
                 <div className="m-auto mt-40">
                     <div className="bg-cgray p-20 rounded-3xl ">{clients["body"].map(client => {
                         let channel = getChannelByID(channels["body"], client["cid"]);
