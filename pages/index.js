@@ -48,39 +48,42 @@ export default function Home({ clients, channels, logs }) {
     if (isMobile) {
       document.querySelector("html").classList.add("mobile")
     }
+    function getConnections() {
 
-    var cons = [];
-    console.log(logs);
-    logs.forEach(log => {
-      if (log["l"].includes("client") && !log["l"].includes("query") && !log["l"].includes("disconnected")) {
-        // (?<=connected ')[^']+(?=')
-        const username = log["l"].match(/([^']+)/g)[1];
-        const dateTimeString = log["l"].match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/g)[0];
-        const year = dateTimeString.match(/\d{4}/g)[0];
-        const month = dateTimeString.match(/\d{2}/g)[2];
-        const day = dateTimeString.match(/\d{2}/g)[3];
-        const timeFull = dateTimeString.match(/\d{2}:\d{2}/g)[0];
-        const hour = timeFull.match(/\d{2}/g)[0]
-        const minute = timeFull.match(/\d{2}/g)[1]
-        const time = `${parseInt(hour) + 2}:${minute}`;
-        const action = log["l"].match(/(dis)?connected/g)[0];
+      var cons = [];
+      console.log(logs);
+      logs.forEach(log => {
+        if (log["l"].includes("client") && !log["l"].includes("query") && !log["l"].includes("disconnected")) {
+          // (?<=connected ')[^']+(?=')
+          const username = log["l"].match(/([^']+)/g)[1];
+          const dateTimeString = log["l"].match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/g)[0];
+          const year = dateTimeString.match(/\d{4}/g)[0];
+          const month = dateTimeString.match(/\d{2}/g)[2];
+          const day = dateTimeString.match(/\d{2}/g)[3];
+          const timeFull = dateTimeString.match(/\d{2}:\d{2}/g)[0];
+          const hour = timeFull.match(/\d{2}/g)[0]
+          const minute = timeFull.match(/\d{2}/g)[1]
+          const time = `${parseInt(hour) + 2}:${minute}`;
+          const action = log["l"].match(/(dis)?connected/g);
 
 
-        // connect disconnect
-        console.log(year, month, day, time, username, action);
-        cons.push({
-          "year": year,
-          "month": month,
-          "day": day,
-          "time": time,
-          "username": username,
-          "action": action
-        })
-      }
-    })
-    cons.reverse();
-    cons = cons.slice(0, 5);
-    setConnections(cons);
+          // connect disconnect
+          console.log(year, month, day, time, username, action);
+          cons.push({
+            "year": year,
+            "month": month,
+            "day": day,
+            "time": time,
+            "username": username,
+            "action": action
+          })
+        }
+      })
+      cons.reverse();
+      cons = cons.slice(0, 5);
+      setConnections(cons);
+    }
+    try { getConnections() } catch (e) { console.log(e) };
   }, [])
 
 
